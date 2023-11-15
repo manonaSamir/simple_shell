@@ -40,7 +40,9 @@ int run_command(char **args)
 	}
 	else
 	{
-		fprintf(stderr, "%s: 1: %s: not found\n", commands, args[0]);
+
+
+		fprintf(stderr, "%s: %s: command not found\n", commands, args[0]);
 		exit_status = 127;
 		return (127);
 	}

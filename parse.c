@@ -14,12 +14,12 @@ char **split_command(char *command)
 		 *small_str = malloc(1024 * sizeof(char *)), *token,
 		 *path = _getenv("PATH");
 
-
 	error_size(Line_size);
 	token = strtok(command, " \t\r\n\a\"");
 
 	if (access(token, F_OK) == -1 && path == NULL)
 	{
+
 		fprintf(stderr, "%s: 1: %s: not found\n", commands, command);
 		exit(127);
 	}
@@ -28,8 +28,7 @@ char **split_command(char *command)
 	{
 		if (token[0] == '#')
 			break;
-		if (!_strstr(token, "/bin/") && !_strstr(token, "/")
-		&& concate_command(token) == 1)
+		if (!_strstr(token, "/bin/") && !_strstr(token, "/") && concate_command(token) == 1)
 		{
 			_strcat(small_str, "/bin/");
 			_strcat(small_str, token);
