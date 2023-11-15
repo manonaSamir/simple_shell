@@ -43,7 +43,7 @@ char **split_command(char *command)
 				strcpy(small_str, "/bin/");
 				strcat(small_str, token);
 				Line_size[i++] = small_str;
-				/*free(small_str);*/
+				free(small_str);
 			}
 		}
 		else
