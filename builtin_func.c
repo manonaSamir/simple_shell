@@ -1,4 +1,3 @@
-
 #include "main.h"
 
 /**
@@ -85,10 +84,11 @@ int exit_func(char **args)
 	char *second;
 	int i;
 
-	if (args == NULL)
-		return (0);
+	if (args == NULL || args[0] == NULL)
+		return 0;
 	first = args[0];
-	second = args[1];
+	second = (args[1] != NULL) ? args[1] : NULL;
+
 	if (strcmp(first, "exit") == 0)
 	{
 		if (second != NULL)
