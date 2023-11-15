@@ -21,10 +21,17 @@ void Shell_Interactive(int isActive)
 			command = read_command();
 		}
 		else
-		{
 			command = read_fstream();
-		}
+
+		if (command == NULL)
+			continue;
+
 		args = split_command(command);
+		if (args == NULL)
+		{
+			free(command);
+			continue;
+		}
 		fstate = execution(args);
 		free(command);
 		free(args);

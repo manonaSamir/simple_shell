@@ -24,7 +24,6 @@ char *read_command(void)
 		{
 			free(line);
 			close(fptr);
-
 			exit(0);
 		}
 		else
@@ -32,7 +31,6 @@ char *read_command(void)
 			free(line);
 			close(fptr);
 			perror(commands);
-
 			exit(1);
 		}
 		close(fptr);

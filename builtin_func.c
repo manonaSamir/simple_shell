@@ -88,7 +88,6 @@ int exit_func(char **args)
 		return 0;
 	first = args[0];
 	second = (args[1] != NULL) ? args[1] : NULL;
-
 	if (strcmp(first, "exit") == 0)
 	{
 		if (second != NULL)
@@ -104,6 +103,10 @@ int exit_func(char **args)
 				}
 			}
 			exit_status = atoi(second);
+		}
+		else
+		{
+			return (0);
 		}
 
 		return (exit_status);

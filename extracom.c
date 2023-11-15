@@ -36,4 +36,5 @@ void error_size(char **size)
 		fprintf(stderr, "allocation error in split_line: tokens\n");
 		exit(EXIT_FAILURE);
 	}
+
 }
