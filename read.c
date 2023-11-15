@@ -6,7 +6,7 @@
  * Return: pointer that points to a str with the line content
  */
 
-char *commands;
+
 
 char *read_command(void)
 {

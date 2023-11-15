@@ -2,10 +2,11 @@
 
 /**
  * main -point of fire simple shell
- *
+ * @argc: parametr int
+ *@argv:parametwr  array
  * Return: (0) on SUCCESS
  */
-int exit_status = 0;
+
 int main(int argc, char *argv[])
 {
 	int fill = STDIN_FILENO;

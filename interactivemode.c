@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
- * interactive_mode - function run when user typing
- *
+ * Shell_Interactive - function run when user typing
+ * @isActive : parameter
  * Return: void
  */
 

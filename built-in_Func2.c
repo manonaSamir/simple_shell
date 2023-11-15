@@ -2,6 +2,7 @@
 
 /**
  * _printf - prints string
+ *@format:parameter
  * Return: number of char printed
  */
 

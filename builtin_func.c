@@ -110,6 +110,13 @@ int exit_func(char **args)
 	return (0);
 }
 
+/**
+ * _getenv - exit the shell
+ * @name: an array of command
+ *
+ * Return: an interger
+ */
+
 char *_getenv(const char *name)
 {
 	int i = 0;
