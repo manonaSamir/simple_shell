@@ -18,26 +18,24 @@ char *read_command(void)
 
 	if (getline(&line, &bufsize, stdin) == -1)
 	{
-		if (line != NULL)
+		fptr = open("/dev/stdin", O_RDONLY);
+		count = read(fptr, buffer, 10);
+		if (count == 0)
 		{
-			fptr = open("/dev/stdin", O_RDONLY);
-			count = read(fptr, buffer, 10);
-			if (count == 0)
-			{
-				free(line);
-				close(fptr);
-				exit(0);
-			}
-			else
-			{
-				free(line);
-				close(fptr);
-				perror(commands);
-
-				exit(1);
-			}
+			free(line);
 			close(fptr);
+
+			exit(0);
 		}
+		else
+		{
+			free(line);
+			close(fptr);
+			perror(commands);
+
+			exit(1);
+		}
+		close(fptr);
 	}
 
 	return (line);
@@ -59,37 +57,32 @@ char *read_fstream(void)
 
 	if (line == NULL)
 	{
-		perror("allocation error in read_stream");
-		/*fprintf(stderr, "allocation error in read_stream");*/
-		exit(1);
+		fprintf(stderr, "allocation error in read_stream");
+		exit(EXIT_FAILURE);
 	}
 	while (1)
 	{
-		character = _getchar();
+		character = getchar();
 		if (character == EOF)
 		{
 			free(line);
-			exit(0);
+			exit(EXIT_SUCCESS);
 		}
 		else if (character == '\n')
 		{
-			line[i] = '\0';
+			line[i++] = '\0';
 			return (line);
 		}
 		else
 			line[i++] = character;
 		if (i >= bufsize)
 		{
-			/*bufsize += bufsize;
-			line = realloc(line, bufsize);*/
-			bufsize *= 2;
-			line = realloc(line, bufsize * sizeof(char));
-
+			bufsize += bufsize;
+			line = realloc(line, bufsize);
 			if (line == NULL)
 			{
-				perror("allocation error in read_stream");
-				/*fprintf(stderr, "reallocation error in read_stream");*/
-				exit(1);
+				fprintf(stderr, "reallocation error in read_stream");
+				exit(EXIT_FAILURE);
 			}
 		}
 	}

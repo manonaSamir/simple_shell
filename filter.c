@@ -7,26 +7,24 @@
  */
 int execution(char **args)
 {
-
-	if (args == NULL || args[0] == NULL)
-		return (-1);
-
-	else
+	if (args[0] == NULL)
 	{
-		if (_strcmp(args[0], "cd") == 0)
-		{
-			return (cd_func(args));
-		}
-		else if (_strcmp(args[0], "env") == 0)
-		{
-			return (env_func(args));
-		}
-
-		else if (_strcmp(args[0], "exit") == 0)
-		{
-			return (exit_func(args));
-		}
-
-		return (run_command(args));
+		return (-1);
 	}
+
+	if (_strcmp(args[0], "cd") == 0)
+	{
+		return (cd_func(args));
+	}
+	else if (_strcmp(args[0], "env") == 0)
+	{
+		return (env_func(args));
+	}
+
+	else if (_strcmp(args[0], "exit") == 0)
+	{
+		return (exit_func(args));
+	}
+
+	return (run_command(args));
 }

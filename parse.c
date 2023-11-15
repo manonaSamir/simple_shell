@@ -11,22 +11,16 @@ char **split_command(char *command)
 {
 	int buffer = 64, i = 0;
 	char **Line_size = malloc(buffer * sizeof(char *)),
-		 *small_str, *token,
+		 *small_str = malloc(1024 * sizeof(char *)), *token,
 		 *path = _getenv("PATH");
 
-	if (command == NULL)
-	{
-		perror(commands);
-		exit(127);
-	}
+
 	error_size(Line_size);
-	if (command != NULL)
-		token = strtok(command, " \t\r\n\a\"");
+	token = strtok(command, " \t\r\n\a\"");
 
 	if (access(token, F_OK) == -1 && path == NULL)
 	{
-		perror(commands);
-		/*fprintf(stderr, "%s: 1: %s: not found\n", commands, command);*/
+		fprintf(stderr, "%s: 1: %s: not found\n", commands, command);
 		exit(127);
 	}
 
@@ -34,20 +28,15 @@ char **split_command(char *command)
 	{
 		if (token[0] == '#')
 			break;
-
-		if (!_strstr(token, "/bin/") && !_strstr(token, "/") && concate_command(token) == 1)
+		if (!_strstr(token, "/bin/") && !_strstr(token, "/")
+		&& concate_command(token) == 1)
 		{
-			small_str = malloc(1024 * sizeof(char *));
-			if (small_str != NULL)
-			{
-				strcpy(small_str, "/bin/");
-				strcat(small_str, token);
-				Line_size[i++] = small_str;
-				free(small_str);
-			}
+			_strcat(small_str, "/bin/");
+			_strcat(small_str, token);
+			Line_size[i++] = small_str;
 		}
 		else
-			Line_size[i++] = strdup(token);
+			Line_size[i++] = token;
 
 		if (i >= buffer)
 		{
@@ -57,7 +46,5 @@ char **split_command(char *command)
 		}
 		token = strtok(NULL, " \t\r\n\a\"");
 	}
-
-	Line_size[i] = NULL;
 	return (Line_size);
 }

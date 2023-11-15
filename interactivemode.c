@@ -26,10 +26,8 @@ void Shell_Interactive(int isActive)
 		}
 		args = split_command(command);
 		fstate = execution(args);
-
 		free(command);
 		free(args);
-
 		if (fstate >= 0)
 		{
 			exit(fstate);
