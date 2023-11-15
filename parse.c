@@ -46,5 +46,6 @@ char **split_command(char *command)
 		}
 		token = strtok(NULL, " \t\r\n\a\"");
 	}
+	free(small_str);
 	return (Line_size);
 }
