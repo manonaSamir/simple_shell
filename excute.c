@@ -38,7 +38,7 @@ int run_command(char **args)
 		else
 		{
 			wait(&status);
-			/*exit_status = WIFEXITED(status) ? WEXITSTATUS(status) : 0;*/
+			exit_status = WIFEXITED(status) ? WEXITSTATUS(status) : 0;
 		}
 	}
 	else
