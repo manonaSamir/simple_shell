@@ -36,6 +36,9 @@ char **split_command(char *command)
 		if (!_strstr(token, "/bin/") && !_strstr(token, "/") && concate_command(token) == 1)
 		{
 			small_str = malloc(1024 * sizeof(char *));
+			if (!small_str)
+				break;
+
 			_strcpy(small_str, "/bin/");
 			_strcat(small_str, token);
 			Line_size[i++] = small_str;
