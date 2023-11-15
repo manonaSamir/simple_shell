@@ -87,7 +87,7 @@ int exit_func(char **args)
 		return (0);
 	first = args[0];
 	second = args[1];
-	if (_strcmp(first, "exit") == 0)
+	if (strcmp(first, "exit") == 0)
 	{
 		if (second != NULL)
 		{

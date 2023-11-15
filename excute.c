@@ -22,7 +22,7 @@ int run_command(char **args)
 			if (execve(args[0], args, environ) == -1)
 			{
 
-				write(2, commands, _strlen(commands));
+				write(2, commands, strlen(commands));
 				write(2, ": 1: ", 5);
 				write(2, args[0], strlen(args[0]));
 				write(2, ": not found\n", 12);

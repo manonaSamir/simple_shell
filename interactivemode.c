@@ -24,10 +24,12 @@ void Shell_Interactive(int isActive)
 		{
 			command = read_fstream();
 		}
+
 		args = split_command(command);
 		fstate = execution(args);
 		free(command);
 		free(args);
+
 		if (fstate >= 0)
 		{
 			exit(fstate);

@@ -18,24 +18,26 @@ char *read_command(void)
 
 	if (getline(&line, &bufsize, stdin) == -1)
 	{
-		fptr = open("/dev/stdin", O_RDONLY);
-		count = read(fptr, buffer, 10);
-		if (count == 0)
+		if (line != NULL)
 		{
-			free(line);
-			close(fptr);
+			fptr = open("/dev/stdin", O_RDONLY);
+			count = read(fptr, buffer, 10);
+			if (count == 0)
+			{
+				free(line);
+				close(fptr);
+				exit(0);
+			}
+			else
+			{
+				free(line);
+				close(fptr);
+				perror(commands);
 
-			exit(0);
-		}
-		else
-		{
-			free(line);
+				exit(1);
+			}
 			close(fptr);
-			perror(commands);
-
-			exit(1);
 		}
-		close(fptr);
 	}
 
 	return (line);
@@ -71,15 +73,18 @@ char *read_fstream(void)
 		}
 		else if (character == '\n')
 		{
-			line[i++] = '\0';
+			line[i] = '\0';
 			return (line);
 		}
 		else
 			line[i++] = character;
 		if (i >= bufsize)
 		{
-			bufsize += bufsize;
-			line = realloc(line, bufsize);
+			/*bufsize += bufsize;
+			line = realloc(line, bufsize);*/
+			bufsize *= 2;
+			line = realloc(line, bufsize * sizeof(char));
+
 			if (line == NULL)
 			{
 				perror("allocation error in read_stream");
