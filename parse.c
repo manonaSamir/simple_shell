@@ -19,6 +19,7 @@ char **split_command(char *command)
 
 	if (access(token, F_OK) == -1 && path == NULL)
 	{
+
 		fprintf(stderr, "%s: 1: %s: not found\n", commands, command);
 		exit(127);
 	}
@@ -29,12 +30,9 @@ char **split_command(char *command)
 			break;
 		if (!_strstr(token, "/bin/") && !_strstr(token, "/") && concate_command(token) == 1)
 		{
-			if (small_str != NULL)
-			{
-				_strcat(small_str, "/bin/");
-				_strcat(small_str, token);
-				Line_size[i++] = small_str;
-			}
+			_strcat(small_str, "/bin/");
+			_strcat(small_str, token);
+			Line_size[i++] = small_str;
 		}
 		else
 			Line_size[i++] = token;
@@ -47,9 +45,8 @@ char **split_command(char *command)
 		}
 		token = strtok(NULL, " \t\r\n\a\"");
 	}
-
 	Line_size[i] = NULL;
-	free(small_str);
 
+	free(small_str);
 	return (Line_size);
 }
