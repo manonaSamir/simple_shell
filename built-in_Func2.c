@@ -46,7 +46,7 @@ int _getchar(void)
 {
 	static char buf[BUFSIZ];
 	static char *bufp = buf;
-	static int i = 0;
+	int i = 0;
 
 	if (i == 0)
 	{
@@ -55,9 +55,9 @@ int _getchar(void)
 	}
 	if (--i >= 0)
 	{
-		return *bufp++;
+		return (*bufp++);
 	}
 
-	return EOF;
+	return (EOF);
 }
 
