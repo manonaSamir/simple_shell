@@ -8,8 +8,8 @@
 
 void Shell_Interactive(int isActive)
 {
-	char *command;
-	char **args;
+	char *command = NULL;
+	char **args = NULL;
 	int fstate = -1;
 	int i = 0;
 
@@ -25,6 +25,7 @@ void Shell_Interactive(int isActive)
 			command = read_fstream();
 		}
 		args = split_command(command);
+
 		fstate = execution(args);
 		free(command);
 		free(args);

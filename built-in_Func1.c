@@ -34,6 +34,9 @@ char *_strcat(char *dest, char *src)
 {
 	unsigned int i, j = 0;
 
+	if (dest == NULL || src == NULL)
+		return (NULL);
+
 	for (i = strlen(dest); j <= strlen(src); i++)
 	{
 		dest[i] = src[j];
@@ -69,6 +72,8 @@ int _strcmp(char *s1, char *s2)
 
 int _strlen(char *s)
 {
+	if (s == NULL)
+		return (0);
 	if (*s)
 		return (1 + _strlen((s + 1)));
 	return (0);

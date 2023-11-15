@@ -7,7 +7,7 @@
  */
 int execution(char **args)
 {
-	if (args[0] == NULL)
+	if (args == NULL)
 	{
 		return (-1);
 	}
