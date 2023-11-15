@@ -22,7 +22,7 @@ int run_command(char **args)
 			if (execve(args[0], args, environ) == -1)
 			{
 
-				fprintf(stderr, "%s: 1: %s: not found\n", commands, args[0]);
+				/*fprintf(stderr, "%s: 1: %s: not found\n", commands, args[0]);*/
 				exit_status = 127;
 				exit(exit_status);
 			}
