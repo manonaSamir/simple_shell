@@ -16,6 +16,11 @@ char **split_command(char *command)
 
 	Line_size = malloc(buffer * sizeof(char *));
 	error_size(Line_size);
+	/*if (!Line_size)
+	{
+		fprintf(stderr, "allocation error in split_line: tokens\n");
+		exit(EXIT_FAILURE);
+	}*/
 	token = strtok(command, " \t\r\n\a\"");
 
 	if (access(token, F_OK) == -1 && path == NULL)
@@ -28,8 +33,7 @@ char **split_command(char *command)
 	{
 		if (token[0] == '#')
 			break;
-		if (!_strstr(token, "/bin/") && !_strstr(token, "/")
-		 && concate_command(token) == 1)
+		if (!_strstr(token, "/bin/") && !_strstr(token, "/") && concate_command(token) == 1)
 		{
 			small_str = malloc(1024 * sizeof(char *));
 			_strcpy(small_str, "/bin/");
@@ -44,6 +48,11 @@ char **split_command(char *command)
 			buffer += buffer;
 			Line_size = realloc(Line_size, buffer * sizeof(char *));
 			error_size(Line_size);
+			/*if (!Line_size)
+			{
+				fprintf(stderr, "allocation error in split_line: tokens\n");
+				exit(EXIT_FAILURE);
+			}*/
 		}
 		token = strtok(NULL, " \t\r\n\a\"");
 	}
