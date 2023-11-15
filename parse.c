@@ -19,8 +19,8 @@ char **split_command(char *command)
 
 	if (access(token, F_OK) == -1 && path == NULL)
 	{
-
-		fprintf(stderr, "%s: 1: %s: not found\n", commands, command);
+		perror(commands);
+		/*fprintf(stderr, "%s: 1: %s: not found\n", commands, command);*/
 		exit(127);
 	}
 
