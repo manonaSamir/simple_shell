@@ -71,6 +71,8 @@ int env_func(char **args)
 	return (-1);
 }
 
+int exit_status = 0;
+char *commands;
 /**
  * exit_func - exit the shell
  * @args: an array of command

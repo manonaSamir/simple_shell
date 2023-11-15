@@ -15,9 +15,11 @@
 extern char *commands;
 extern int exit_status;
 
-int exit_status = 0;
-char *commands;
+
+
+
 extern char **environ;
+
 /*printf function */
 void _printf(const char *format, ...);
 int _getchar(void);

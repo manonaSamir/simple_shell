@@ -11,7 +11,7 @@ char **split_command(char *command)
 {
 	int buffer = 64, i = 0;
 	char **Line_size = malloc(buffer * sizeof(char *)),
-		 *small_str,
+		 *small_str, *token,
 		 *path = _getenv("PATH");
 
 	error_size(Line_size);
