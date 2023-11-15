@@ -57,16 +57,17 @@ char *read_fstream(void)
 
 	if (line == NULL)
 	{
-		fprintf(stderr, "allocation error in read_stream");
-		exit(EXIT_FAILURE);
+		perror("allocation error in read_stream");
+		/*fprintf(stderr, "allocation error in read_stream");*/
+		exit(1);
 	}
 	while (1)
 	{
-		character = getchar();
+		character = _getchar();
 		if (character == EOF)
 		{
 			free(line);
-			exit(EXIT_SUCCESS);
+			exit(0);
 		}
 		else if (character == '\n')
 		{
@@ -81,8 +82,9 @@ char *read_fstream(void)
 			line = realloc(line, bufsize);
 			if (line == NULL)
 			{
-				fprintf(stderr, "reallocation error in read_stream");
-				exit(EXIT_FAILURE);
+				perror("allocation error in read_stream");
+				/*fprintf(stderr, "reallocation error in read_stream");*/
+				exit(1);
 			}
 		}
 	}

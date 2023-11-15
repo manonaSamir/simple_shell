@@ -21,7 +21,7 @@ void _printf(const char *format, ...)
 			if (*p == 's')
 			{
 				s = va_arg(args, char *);
-				d = strlen(s);
+				d = _strlen(s);
 				m = write(1, s, d);
 			}
 		}
@@ -36,20 +36,28 @@ void _printf(const char *format, ...)
 	va_end(args);
 }
 
+
 /**
- * remove_extra_spaces - function replace char
+ * _getchar - function reads a single
  * character from the standard input (stdin)
  * Return: end of file
  */
-void remove_extra_spaces(char *str)
+int _getchar(void)
 {
-	int i, x;
+	static char buf[BUFSIZ];
+	static char *bufp = buf;
+	static int i = 0;
 
-	for (i = x = 0; str[i]; ++i)
+	if (i == 0)
 	{
-		if (!isspace(str[i]) || (i > 0 && !isspace(str[i - 1])))
-			str[x++] = str[i];
-
+		i = read(0, buf, 1);
+		bufp = buf;
 	}
-	str[x] = '\0';
+	if (--i >= 0)
+	{
+		return *bufp++;
+	}
+
+	return EOF;
 }
+

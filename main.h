@@ -31,7 +31,6 @@ int execution(char **args);
 char *read_fstream(void);
 ssize_t _getline(char **lineptr, size_t *n, int fd);
 int concate_command(char *command);
-void remove_extra_spaces(char *str);
 void free_arr(char **arr);
 
 char *_getenv(const char *name);
