@@ -10,8 +10,8 @@
 char **split_command(char *command)
 {
 	int buffer = 64, i = 0;
-	char **path = NULL, *test = NULL,
-		 *Line_size = NULL, *token = NULL;
+	char *path = NULL, *test = NULL,
+		 **Line_size = NULL, *token = NULL;
 
 	if (removeSpaces(command) == NULL)
 		return (0);
