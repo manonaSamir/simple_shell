@@ -48,7 +48,8 @@ char *read_fstream(void)
 
 	int bufsize = 1024;
 	int i = 0;
-	char *line = malloc(sizeof(char) * bufsize);
+	char *line = malloc(sizeof(char) * bufsize); /*, *token = NULL*/
+
 	int character;
 
 	if (line == NULL)
@@ -59,6 +60,7 @@ char *read_fstream(void)
 	while (1)
 	{
 		character = getchar();
+
 		if (character == EOF)
 		{
 			free(line);
@@ -68,10 +70,14 @@ char *read_fstream(void)
 		else if (character == '\n')
 		{
 			line[i++] = '\0';
+
 			return (line);
 		}
+		else if (character == ';')
+			continue;
 		else
 			line[i++] = character;
+
 		if (i >= bufsize)
 		{
 			bufsize += bufsize;
