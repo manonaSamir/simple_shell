@@ -91,3 +91,25 @@ char *removeSpaces(const char *input)
 
 	return (result);
 }
+
+/**
+ * addingstr - free array
+ * @Line_size: string to be splited
+ * Return:1 if success 0 if not
+ */
+
+char *addingstr(char *token)
+{
+	char *small_str = NULL;
+
+	small_str = malloc((strlen("/bin/") + strlen(token) + 1) * sizeof(char));
+	if (!small_str)
+	{
+		fprintf(stderr, "allocation error in split_line: tokens\n");
+		exit(EXIT_FAILURE);
+		free(small_str);
+	}
+	_strcpy(small_str, "/bin/");
+	_strcat(small_str, token);
+	return (small_str);
+}
