@@ -94,10 +94,9 @@ char *removeSpaces(const char *input)
 
 /**
  * addingstr - free array
- * @Line_size: string to be splited
+ * @token: string to be splited
  * Return:1 if success 0 if not
  */
-
 char *addingstr(char *token)
 {
 	char *small_str = NULL;
