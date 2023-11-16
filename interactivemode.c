@@ -13,6 +13,7 @@ void Shell_Interactive(int isActive)
 	int fstate = -1;
 	int i = 0;
 
+
 	for (; fstate == -1; i++)
 	{
 		if (isActive == 1)

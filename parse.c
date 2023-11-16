@@ -12,9 +12,10 @@ char **split_command(char *command)
 	int buffer = 64, i = 0;
 	char **Line_size = NULL,
 		 *small_str = NULL, *token = NULL,
-		 *path = _getenv("PATH");
+		 *path = NULL;
 
 	Line_size = malloc(buffer * sizeof(char *));
+	path = getenv("PATH");
 	error_size(Line_size);
 	/*if (!Line_size)
 	{
@@ -60,5 +61,6 @@ char **split_command(char *command)
 		token = strtok(NULL, " \t\r\n\a\"");
 	}
 	Line_size[i] = NULL;
+
 	return (Line_size);
 }
