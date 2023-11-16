@@ -13,7 +13,7 @@ char **split_command(char *command)
 	char **Line_size = NULL,
 		 *small_str = NULL, *token = NULL,
 		 *path = NULL;
-	int j = 0;
+
 
 	Line_size = malloc(buffer * sizeof(char *));
 	error_size(Line_size);
