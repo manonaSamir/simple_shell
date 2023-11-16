@@ -17,6 +17,12 @@ int execution(char **args)
 	else if (_strcmp(args[0], "env") == 0)
 		return (env_func(args));
 
+	else if (_strcmp(args[0], "setenv") == 0)
+		return (setenv_command(args[2] , args[3], 1));
+
+	else if (_strcmp(args[0], "unsetenv") == 0)
+		return (unsetenv_command(args[2]));
+
 	else if (_strcmp(args[0], "cd") == 0)
 		return (cd_func(args));
 

@@ -42,4 +42,7 @@ void error_size(char **size);
 int _strlen(char *s);
 char *addingstr(char *token);
 char *removeSpaces(const char *input);
+
+int setenv_command(const char *variable, const char *value, int overwrite);
+int unsetenv_command(const char *variable);
 #endif
