@@ -12,23 +12,15 @@ char **split_command(char *command)
 	int buffer = 64, i = 0;
 	char **Line_size = NULL,
 		 *small_str = NULL, *token = NULL,
-		 *path = NULL;
-	char *test = NULL;
+		 *path = NULL, *test = NULL;
 
 	test = removeSpaces(command);
-
 	if (test == NULL)
 		return (0);
 
 	Line_size = malloc(buffer * sizeof(char *));
 	error_size(Line_size);
 	path = getenv("PATH");
-
-	/*if (!Line_size)
-	{
-		fprintf(stderr, "allocation error in split_line: tokens\n");
-		exit(EXIT_FAILURE);
-	}*/
 
 	token = strtok(command, " \t\r\n\a\"");
 
@@ -42,10 +34,10 @@ char **split_command(char *command)
 	{
 		if (token[0] == '#')
 			break;
-		if (!_strstr(token, "/bin/") && !_strstr(token, "/") && concate_command(token) == 1)
+		if (!_strstr(token, "/bin/") && !_strstr(token, "/")
+		 && concate_command(token) == 1)
 		{
 			small_str = malloc((strlen("/bin/") + strlen(token) + 1) * sizeof(char));
-			/*malloc(1024 * sizeof(char *));*/
 			if (!small_str)
 			{
 				fprintf(stderr, "allocation error in split_line: tokens\n");
@@ -65,24 +57,11 @@ char **split_command(char *command)
 		{
 			buffer += buffer;
 			Line_size = realloc(Line_size, buffer * sizeof(char *));
-			/*error_size(Line_size);*/
-			if (!Line_size)
-			{
-				fprintf(stderr, "allocation error in split_line: tokens\n");
-				Line_size = NULL;
-				free(Line_size);
-				exit(EXIT_FAILURE);
-			}
+			error_size(Line_size);
 		}
-
 		token = strtok(NULL, " \t\r\n\a\"");
 	}
-
 	Line_size[i] = NULL;
-	/*for (; j < i; j++)
-	{
-		printf("%s\n", Line_size[j]);
-	}*/
 	free(test);
 	return (Line_size);
 }

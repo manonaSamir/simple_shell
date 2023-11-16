@@ -48,6 +48,7 @@ void error_size(char **size)
 void free_memory(char **Line_size, int count)
 {
 	int j = 0;
+
 	for (; j < count; j++)
 	{
 		free(Line_size[j]);
@@ -60,14 +61,14 @@ void free_memory(char **Line_size, int count)
  * @input: string to be splited
  * Return:1 if success 0 if not
  */
+
 char *removeSpaces(const char *input)
 {
-	size_t j = 0, i ;
-	size_t len;
+	size_t j = 0, i, len;
 	char *result = NULL;
 
 	if (input == NULL)
-		return NULL;
+		return (NULL);
 	len = strlen(input);
 	result = (char *)malloc(len + 1);
 	if (result == NULL)
