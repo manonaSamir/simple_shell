@@ -40,6 +40,6 @@ int env_func(char **args);
 int exit_func(char **args);
 void error_size(char **size);
 int _strlen(char *s);
-int containsBigSpace(const char *str);
 
+char *removeSpaces(const char *input);
 #endif

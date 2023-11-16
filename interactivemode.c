@@ -13,7 +13,6 @@ void Shell_Interactive(int isActive)
 	int fstate = -1;
 	int i = 0;
 
-
 	for (; fstate == -1; i++)
 	{
 		if (isActive == 1)
@@ -26,7 +25,6 @@ void Shell_Interactive(int isActive)
 
 		if (command == NULL)
 			continue;
-
 		args = split_command(command);
 		if (args == NULL)
 		{
@@ -36,6 +34,7 @@ void Shell_Interactive(int isActive)
 		fstate = execution(args);
 		free(command);
 		free(args);
+
 		if (fstate >= 0)
 		{
 			exit(fstate);

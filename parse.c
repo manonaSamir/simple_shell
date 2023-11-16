@@ -13,9 +13,13 @@ char **split_command(char *command)
 	char **Line_size = NULL,
 		 *small_str = NULL, *token = NULL,
 		 *path = NULL;
+	char *test = NULL;
 
-	if (containsBigSpace(command) == 1)
+	test = removeSpaces(command);
+
+	if (test == NULL)
 		return (0);
+
 
 	Line_size = malloc(buffer * sizeof(char *));
 	error_size(Line_size);

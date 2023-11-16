@@ -6,8 +6,6 @@
  * Return: pointer that points to a str with the line content
  */
 
-
-
 char *read_command(void)
 {
 	ssize_t count;
@@ -64,6 +62,7 @@ char *read_fstream(void)
 		if (character == EOF)
 		{
 			free(line);
+
 			exit(EXIT_SUCCESS);
 		}
 		else if (character == '\n')

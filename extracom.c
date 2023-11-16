@@ -56,21 +56,37 @@ void free_memory(char **Line_size, int count)
 }
 
 /**
- * containsBigSpace - containsBigSpace
- * @str: string to be splited
+ * removeSpaces - containsBigSpace
+ * @input: string to be splited
  * Return:1 if success 0 if not
  */
-int containsBigSpace(const char *str)
+char *removeSpaces(const char *input)
 {
-	int i = 0;
+	size_t j = 0, i ;
+	size_t len;
+	char *result = NULL;
 
-	while (*str)
+	if (input == NULL)
+		return NULL;
+	len = strlen(input);
+	result = (char *)malloc(len + 1);
+	if (result == NULL)
 	{
-		if (isspace(*str))
-			i++;
-		if (i > 1)
-			return (1);
-		str++;
+		fprintf(stderr, "Memory allocation failed\n");
+		exit(EXIT_FAILURE);
 	}
-	return (0);
+
+	for (i = 0; i < len; i++)
+	{
+		if (input[i] != ' ')
+			result[j++] = input[i];
+	}
+	result[j] = '\0';
+	if (j == 0)
+	{
+		free(result);
+		return (NULL);
+	}
+
+	return (result);
 }

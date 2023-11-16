@@ -7,6 +7,7 @@
  */
 int execution(char **args)
 {
+
 	if (args[0] == NULL)
 		return (-1);
 
@@ -18,6 +19,8 @@ int execution(char **args)
 
 	else if (_strcmp(args[0], "cd") == 0)
 		return (cd_func(args));
+
+
 
 	return (run_command(args));
 }
