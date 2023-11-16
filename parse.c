@@ -20,7 +20,6 @@ char **split_command(char *command)
 	if (test == NULL)
 		return (0);
 
-
 	Line_size = malloc(buffer * sizeof(char *));
 	error_size(Line_size);
 	path = getenv("PATH");
@@ -84,5 +83,6 @@ char **split_command(char *command)
 	{
 		printf("%s\n", Line_size[j]);
 	}*/
+	free(test);
 	return (Line_size);
 }
