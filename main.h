@@ -15,9 +15,6 @@
 extern char *commands;
 extern int exit_status;
 
-
-
-
 extern char **environ;
 
 /*printf function */
@@ -36,12 +33,13 @@ char *read_fstream(void);
 ssize_t _getline(char **lineptr, size_t *n, int fd);
 int concate_command(char *command);
 void free_arr(char **arr);
-
+void free_memory(char **Line_size, int count);
 char *_getenv(const char *name);
 int cd_func(char **args);
 int env_func(char **args);
 int exit_func(char **args);
 void error_size(char **size);
 int _strlen(char *s);
+int containsBigSpace(const char *str);
 
 #endif

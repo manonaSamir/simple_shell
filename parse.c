@@ -13,10 +13,12 @@ char **split_command(char *command)
 	char **Line_size = NULL,
 		 *small_str = NULL, *token = NULL,
 		 *path = NULL;
+	int j = 0;
 
 	Line_size = malloc(buffer * sizeof(char *));
-	path = getenv("PATH");
 	error_size(Line_size);
+	path = getenv("PATH");
+
 	/*if (!Line_size)
 	{
 		fprintf(stderr, "allocation error in split_line: tokens\n");
@@ -34,15 +36,21 @@ char **split_command(char *command)
 	{
 		if (token[0] == '#')
 			break;
-		if (!_strstr(token, "/bin/") && !_strstr(token, "/") && concate_command(token) == 1)
+		if (!_strstr(token, "/bin/") && !_strstr(token, "/") && concate_command(token) == 1 && containsBigSpace(token) != 0)
 		{
-			small_str = malloc(1024 * sizeof(char *));
+			small_str = malloc((strlen("/bin/") + strlen(token) + 1) * sizeof(char));
+			/*malloc(1024 * sizeof(char *));*/
 			if (!small_str)
-				break;
-
+			{
+				fprintf(stderr, "allocation error in split_line: tokens\n");
+				exit(EXIT_FAILURE);
+				free_memory(Line_size, i);
+			}
 			_strcpy(small_str, "/bin/");
 			_strcat(small_str, token);
 			Line_size[i++] = small_str;
+			small_str = NULL;
+			free(small_str);
 		}
 		else
 			Line_size[i++] = token;
@@ -51,16 +59,23 @@ char **split_command(char *command)
 		{
 			buffer += buffer;
 			Line_size = realloc(Line_size, buffer * sizeof(char *));
-			error_size(Line_size);
-			/*if (!Line_size)
+			/*error_size(Line_size);*/
+			if (!Line_size)
 			{
 				fprintf(stderr, "allocation error in split_line: tokens\n");
+				Line_size = NULL;
+				free(Line_size);
 				exit(EXIT_FAILURE);
-			}*/
+			}
 		}
+
 		token = strtok(NULL, " \t\r\n\a\"");
 	}
-	Line_size[i] = NULL;
 
+	Line_size[i] = NULL;
+	/*for (; j < i; j++)
+	{
+		printf("%s\n", Line_size[j]);
+	}*/
 	return (Line_size);
 }
