@@ -10,19 +10,15 @@
  */
 void execute(char **args, char **argv, char **envp, list_t **path_list)
 {
-	char *command;
+	char *command, f_letter;
 	pid_t pid;
 	int status;
 	void (*builtin)(char **args);
-	char f_letter;
 
 	if (args == NULL)
 		return;
 
-
-
 	command = search(args[0], path_list);
-
 	f_letter = args[0][0];
 	builtin = get_builtin(args[0]);
 	if (builtin != NULL)
@@ -36,7 +32,6 @@ void execute(char **args, char **argv, char **envp, list_t **path_list)
 		pid = fork();
 		if (pid == 0)
 		{
-
 			execve(command, args, envp);
 			perror("exeve");
 			exit(1);

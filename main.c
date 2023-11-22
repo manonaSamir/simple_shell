@@ -13,11 +13,10 @@ int cmd_count = 0;
 
 int main(int argc, char **argv, char **envp)
 {
-	char *input = NULL, *path = getenv("PATH");
+	char *input = NULL, **args = NULL,
+	 **lines, **commands, *path = getenv("PATH");
 	list_t *path_list;
-	char **args = NULL, **lines, **commands;
 	int should_exit = 0, i = 0;
-
 
 	check_argc(argc, argv);
 	path = _strdup(path);
